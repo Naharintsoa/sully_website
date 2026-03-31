@@ -37,5 +37,8 @@ jobs:
             git fetch --all --tags --force
             git checkout "$TAG"
 
+            # Variables d'environnement
+            echo "RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}" > "$APP_DIR/.env.local"
+
             # Déploiement
             bash deploy.sh
