@@ -11,7 +11,7 @@ echo "🔨 Build Next.js..."
 npm run build
 
 echo "🔄 Redémarrage PM2..."
-pm2 reload ecosystem.config.js --env production || pm2 start ecosystem.config.js --env production
+pm2 restart ecosystem.config.js --env production --update-env || pm2 start ecosystem.config.js --env production
 
 echo "💾 Sauvegarde PM2..."
 pm2 save
