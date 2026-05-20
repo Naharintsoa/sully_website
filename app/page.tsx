@@ -395,7 +395,7 @@ export default function Home() {
               <span className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center">
                 <Play className="w-4 h-4 text-white" />
               </span>
-              Vidéos Événements
+              Vidéos Événements etc
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               {[
