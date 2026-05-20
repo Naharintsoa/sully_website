@@ -4,6 +4,12 @@ set -e
 export NVM_DIR="/home/deploy/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
+echo "🔧 Correction des permissions..."
+sudo chown -R deploy:deploy .
+
+echo "🧹 Nettoyage du cache Next.js..."
+rm -rf .next
+
 echo "📦 Installation des dépendances..."
 npm ci --production=false
 
