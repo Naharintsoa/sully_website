@@ -354,7 +354,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {[
                 { slides:[
-                  { src:'/gy.png',    label:'Gymnase & Sports',        sub:'Installations sportives' },
+                  { src:'/gym.png',    label:'Gymnase & Sports',        sub:'Installations sportives' },
                   { src:'/piscine.jpg',label:'Gymnase & Sports',        sub:'Terrain de football' },
                   { src:'/piscine1.jpg',label:'Gymnase & Sports',        sub:'Terrain de basketball' },
                   { src:'/foot.jpg',label:'Gymnase & Sports',        sub:'Plateau sportif' },
