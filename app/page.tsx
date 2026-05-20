@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Users, BookOpen, Award, Building2, Mail, Phone, MapPin, Play, GraduationCap, Star, ChevronRight, Heart, Lightbulb, Globe, Handshake } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
+import { PhotoCarousel } from '@/components/photo-carousel';
 
 function useCountUp(target: number, duration = 2000, start = false) {
   const [count, setCount] = useState(0);
@@ -352,21 +353,39 @@ export default function Home() {
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {[
-                { src:'/gym.png',    label:'Gymnase & Sports',        sub:'Installations sportives' },
-                { src:'/ecole.png',  label:'Bâtiment Principal',      sub:'Notre établissement' },
-                { src:'/classe.jpg', label:'Salle de Classe',         sub:"Environnement d'apprentissage" },
-                { src:'/groupe.png', label:'Élèves & Communauté',     sub:'Vie scolaire' },
-                { src:'/dessin.jpg', label:'Activités Artistiques',   sub:'Créativité & expression' },
-                { src:'/ecole.png',  label:'Espaces Communs',         sub:'Lieux de partage' },
-              ].map((p, i) => (
-                <div key={i} className="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300">
-                  <img src={p.src} alt={p.label} className="aspect-square w-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent group-hover:from-black/80 transition-all duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="font-bold text-white text-sm">{p.label}</p>
-                    <p className="text-white/60 text-xs">{p.sub}</p>
-                  </div>
-                </div>
+                { slides:[
+                  { src:'/gym.png',    label:'Gymnase & Sports',        sub:'Installations sportives' },
+                  { src:'/piscine.png',label:'Gymnase & Sports',        sub:'Terrain de football' },
+                  { src:'/piscine1.png',label:'Gymnase & Sports',        sub:'Terrain de basketball' },
+                  { src:'/foot.jpg',label:'Gymnase & Sports',        sub:'Plateau sportif' },
+                ]},
+                { slides:[
+                  { src:'/ecole.png',  label:'Bâtiment Principal',      sub:'Notre établissement' },
+                  { src:'placeholder:1',label:'Bâtiment Principal',      sub:'Entrée de l\'école' },
+                  { src:'placeholder:2',label:'Bâtiment Principal',      sub:'Cour de récréation' },
+                ]},
+                { slides:[
+                  { src:'/classe.jpg', label:'Salle de Classe',         sub:"Environnement d'apprentissage" },
+                  { src:'placeholder:1',label:'Salle de Classe',         sub:'Salle informatique' },
+                  { src:'placeholder:2',label:'Salle de Classe',         sub:'Bibliothèque' },
+                ]},
+                { slides:[
+                  { src:'/groupe.png', label:'Élèves & Communauté',     sub:'Vie scolaire' },
+                  { src:'placeholder:1',label:'Élèves & Communauté',     sub:'Sortie scolaire' },
+                  { src:'placeholder:2',label:'Élèves & Communauté',     sub:'Cérémonie' },
+                ]},
+                { slides:[
+                  { src:'/dessin.jpg', label:'Activités Artistiques',   sub:'Créativité & expression' },
+                  { src:'placeholder:1',label:'Activités Artistiques',   sub:'Exposition' },
+                  { src:'placeholder:2',label:'Activités Artistiques',   sub:'Atelier peinture' },
+                ]},
+                { slides:[
+                  { src:'/ecole.png',  label:'Espaces Communs',         sub:'Lieux de partage' },
+                  { src:'placeholder:1',label:'Espaces Communs',         sub:'Cantine' },
+                  { src:'placeholder:2',label:'Espaces Communs',         sub:'Salle polyvalente' },
+                ]},
+              ].map((item, i) => (
+                <PhotoCarousel key={i} slides={item.slides} />
               ))}
             </div>
           </div>
