@@ -1,5 +1,6 @@
-'use client'
+"use client"
 
+import React, { useMemo } from 'react'
 import Autoplay from 'embla-carousel-autoplay'
 import {
   Carousel,
@@ -16,12 +17,12 @@ type Slide = {
 }
 
 export function PhotoCarousel({ slides }: { slides: Slide[] }) {
+  const autoplay = useMemo(() => Autoplay({ delay: 4000, stopOnInteraction: false }), [])
+
   return (
     <Carousel
       opts={{ loop: true, align: 'start' }}
-      plugins={[
-        Autoplay({ delay: 4000, stopOnInteraction: false }),
-      ]}
+      plugins={[autoplay]}
       className="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300"
     >
       <CarouselContent>
