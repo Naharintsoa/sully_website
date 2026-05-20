@@ -355,8 +355,8 @@ export default function Home() {
               {[
                 { slides:[
                   { src:'/gym.png',    label:'Gymnase & Sports',        sub:'Installations sportives' },
-                  { src:'/piscine.png',label:'Gymnase & Sports',        sub:'Terrain de football' },
-                  { src:'/piscine1.png',label:'Gymnase & Sports',        sub:'Terrain de basketball' },
+                  { src:'/piscine.jpg',label:'Gymnase & Sports',        sub:'Terrain de football' },
+                  { src:'/piscine1.jpg',label:'Gymnase & Sports',        sub:'Terrain de basketball' },
                   { src:'/foot.jpg',label:'Gymnase & Sports',        sub:'Plateau sportif' },
                 ]},
                 { slides:[
