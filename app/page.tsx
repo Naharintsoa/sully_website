@@ -413,6 +413,7 @@ export default function Home() {
                     <div className="aspect-video relative overflow-hidden bg-black">
                       <video
                         src={v.video}
+                        poster="/atelier-art-poster.jpg"
                         controls
                         preload="metadata"
                         className="absolute inset-0 w-full h-full object-cover"
