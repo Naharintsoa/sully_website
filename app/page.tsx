@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Menu, X, Users, BookOpen, Award, Building2, Mail, Phone, MapPin, Play, GraduationCap, Star, ChevronRight, Heart, Lightbulb, Globe, Handshake } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
 import { PhotoCarousel } from '@/components/photo-carousel';
@@ -25,6 +25,7 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [statsVisible, setStatsVisible] = useState(false);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
   const students = useCountUp(850, 2000, statsVisible);
@@ -399,7 +400,7 @@ export default function Home() {
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                { title: "Spectacle de Fin d'Année", dur: '5:45 min', grad: 'from-teal-800 to-emerald-900' },
+                { title: "Spectacle de Fin d'Année", dur: '5:45 min', grad: 'from-teal-800 to-emerald-900', youtube: 'MDH82NmA-KY' },
                 { title: 'Projection Tour du Monde', dur: '3:15 min', grad: 'from-sky-800 to-cyan-900' },
                 { title: 'Championnat de Sports', dur: '4:20 min', grad: 'from-indigo-800 to-violet-900' },
                 {
@@ -407,8 +408,41 @@ export default function Home() {
                   dur: '2:30 min',
                   video: '/atelier-art.mp4',
                 },
-              ].map((v, i) => (
-                v.video ? (
+              ].map((v, i) => {
+                const vid = v as typeof v & { youtube?: string };
+                return vid.youtube ? (
+                  <div key={i} className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                    <div className="aspect-video relative overflow-hidden bg-black">
+                      {activeVideo === vid.youtube ? (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${vid.youtube}?autoplay=1`}
+                          title={vid.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="absolute inset-0 w-full h-full"
+                        />
+                      ) : (
+                        <>
+                          <img
+                            src={`https://img.youtube.com/vi/${vid.youtube}/maxresdefault.jpg`}
+                            alt={vid.title}
+                            className="absolute inset-0 w-full h-full object-cover"
+                            onClick={() => setActiveVideo(vid.youtube!)}
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center" onClick={() => setActiveVideo(vid.youtube!)}>
+                            <div className="w-16 h-16 bg-white/15 backdrop-blur-sm border-2 border-white/40 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-white/25 transition-all duration-300">
+                              <Play className="w-7 h-7 text-white fill-current ml-1" />
+                            </div>
+                          </div>
+                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 pointer-events-none">
+                            <h4 className="text-white font-bold">{v.title}</h4>
+                            <p className="text-white/55 text-sm">{v.dur}</p>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                ) : v.video ? (
                   <div key={i} className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
                     <div className="aspect-video relative overflow-hidden bg-black">
                       <video
@@ -439,7 +473,7 @@ export default function Home() {
                     </div>
                   </div>
                 )
-              ))}
+              })}
             </div>
           </div>
         </div>
