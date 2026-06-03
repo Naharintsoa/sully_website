@@ -400,7 +400,13 @@ export default function Home() {
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                { title: "Spectacle de Fin d'Année", dur: '5:45 min', grad: 'from-teal-800 to-emerald-900', youtube: 'MDH82NmA-KY' },
+                {
+                  title: "Spectacle de Fin d'Année",
+                  dur: '5:45 min',
+                  grad: 'from-teal-800 to-emerald-900',
+                  youtube: 'MDH82NmA-KY',
+                  youtubeShorts: 'https://youtube.com/shorts/MDH82NmA-KY',
+                },
                 { title: 'Projection Tour du Monde', dur: '3:15 min', grad: 'from-sky-800 to-cyan-900' },
                 { title: 'Championnat de Sports', dur: '4:20 min', grad: 'from-indigo-800 to-violet-900' },
                 {
@@ -409,13 +415,13 @@ export default function Home() {
                   video: '/atelier-art.mp4',
                 },
               ].map((v, i) => {
-                const vid = v as typeof v & { youtube?: string };
+                const vid = v as typeof v & { youtube?: string; youtubeShorts?: string };
                 return vid.youtube ? (
                   <div key={i} className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
                     <div className="aspect-video relative overflow-hidden bg-black">
                       {activeVideo === vid.youtube ? (
                         <iframe
-                          src={`https://www.youtube.com/embed/${vid.youtube}?autoplay=1`}
+                          src={`https://www.youtube.com/embed/${vid.youtube}?autoplay=1&rel=0`}
                           title={vid.title}
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
