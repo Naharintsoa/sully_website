@@ -21,6 +21,10 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
           script: |
+            # 1. Arrêter immédiatement le script en cas d'erreur
+            set -e
+
+            # 2. Chargement de l'environnement Node (NVM)
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
@@ -28,17 +32,28 @@ jobs:
             REPO_URL="https://github.com/${{ github.repository }}.git"
             TAG="${{ github.ref_name }}"
 
-            # Clone ou pull
+            # 3. Initialisation du dossier si premier déploiement
             if [ ! -d "$APP_DIR/.git" ]; then
+              echo "Initialisation du dépôt..."
               git clone "$REPO_URL" "$APP_DIR"
             fi
 
             cd "$APP_DIR"
-            git fetch --all --tags --force
-            git checkout "$TAG"
 
-            # Variables d'environnement
-            echo "RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}" > "$APP_DIR/.env.local"
+            # 4. Nettoyage agressif 
+            git reset --hard HEAD
+            git clean -fd # Supprime les fichiers et dossiers non suivis qui pourraient gêner
 
-            # Déploiement
-            bash deploy.sh
+            # 5. Récupération optimisée
+            git fetch --tags --force origin
+
+            # 6. Checkout sécurisé
+            git checkout --force "$TAG"
+
+            # 7. Exécution du script de build/déploiement applicatif
+            if [ -f "deploy.sh" ]; then
+              bash deploy.sh
+            else
+              echo "Erreur : deploy.sh introuvable à la racine du tag $TAG"
+              exit 1
+            fi
