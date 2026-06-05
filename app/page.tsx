@@ -362,8 +362,6 @@ export default function Home() {
                 ]},
                 { slides:[
                   { src:'/ecole.png',  label:'Bâtiment Principal',      sub:'Notre établissement' },
-                  { src:'placeholder:1',label:'Bâtiment Principal',      sub:'Entrée de l\'école' },
-                  { src:'placeholder:2',label:'Bâtiment Principal',      sub:'Cour de récréation' },
                 ]},
                 { slides:[
                   { src:'/classe.jpg', label:'Salle de Classe',         sub:"Environnement d'apprentissage" },
@@ -396,7 +394,7 @@ export default function Home() {
               <span className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center">
                 <Play className="w-4 h-4 text-white" />
               </span>
-              Vidéos Événements etc
+              Vidéos événements.
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               {[
