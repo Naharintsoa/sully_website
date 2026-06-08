@@ -13,13 +13,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
 
+      - name: Validate SSH deployment secrets
+        run: |
+          if [ -z "${{ secrets.VPS_HOST || secrets.HOST || secrets.SERVER_HOST || secrets.SSH_HOST }}" ]; then
+            echo "Erreur : aucun hôte SSH défini. Ajoutez le secret VPS_HOST, HOST, SERVER_HOST ou SSH_HOST."
+            exit 1
+          fi
+          if [ -z "${{ secrets.VPS_SSH_KEY || secrets.SSH_KEY }}" ]; then
+            echo "Erreur : aucune clé SSH définie. Ajoutez le secret VPS_SSH_KEY ou SSH_KEY."
+            exit 1
+          fi
+          if [ -z "${{ secrets.VPS_PORT || secrets.SSH_PORT || secrets.PORT }}" ]; then
+            echo "Erreur : aucun port SSH défini. Ajoutez le secret VPS_PORT, SSH_PORT ou PORT."
+            exit 1
+          fi
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.VPS_HOST }}
+          host: ${{ secrets.VPS_HOST || secrets.HOST || secrets.SERVER_HOST || secrets.SSH_HOST }}
           username: deploy
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: ${{ secrets.VPS_PORT }}
+          key: ${{ secrets.VPS_SSH_KEY || secrets.SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || secrets.SSH_PORT || secrets.PORT }}
           script: |
             # 1. Arrêter immédiatement le script en cas d'erreur
             set -e
