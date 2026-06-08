@@ -370,7 +370,7 @@ export default function Home() {
                 ]},
                 { slides:[
                   { src:'/groupe.png', label:'Élèves & Communauté',     sub:'Vie scolaire' },
-                  { src:'/reboi.jpg',label:'Élèves & Communauté',     sub:'Sortie scolaire' },
+                  { src:'/reboi.jpg',label:'Reboisement',     sub:'Sortie scolaire' },
                   { src:'/ensemble.jpg',label:'Élèves & Communauté',     sub:'Cérémonie' },
                 ]},
                 { slides:[
