@@ -19,8 +19,8 @@ jobs:
             echo "Erreur : aucun hôte SSH défini. Ajoutez le secret VPS_HOST, HOST, SERVER_HOST ou SSH_HOST."
             exit 1
           fi
-          if [ -z "${{ secrets.VPS_SSH_KEY || secrets.SSH_KEY }}" ]; then
-            echo "Erreur : aucune clé SSH définie. Ajoutez le secret VPS_SSH_KEY ou SSH_KEY."
+          if [ -z "${{ secrets.VPS_SSH_KEY || secrets.SSH_KEY || secrets.VPS_PRIVATE_KEY || secrets.SSH_PRIVATE_KEY }}" ]; then
+            echo "Erreur : aucune clé SSH définie. Ajoutez le secret VPS_SSH_KEY, SSH_KEY, VPS_PRIVATE_KEY ou SSH_PRIVATE_KEY."
             exit 1
           fi
           if [ -z "${{ secrets.VPS_PORT || secrets.SSH_PORT || secrets.PORT }}" ]; then
@@ -32,7 +32,7 @@ jobs:
         with:
           host: ${{ secrets.VPS_HOST || secrets.HOST || secrets.SERVER_HOST || secrets.SSH_HOST }}
           username: deploy
-          key: ${{ secrets.VPS_SSH_KEY || secrets.SSH_KEY }}
+          key: ${{ secrets.VPS_SSH_KEY || secrets.SSH_KEY || secrets.VPS_PRIVATE_KEY || secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.VPS_PORT || secrets.SSH_PORT || secrets.PORT }}
           script: |
             # 1. Arrêter immédiatement le script en cas d'erreur
