@@ -365,13 +365,18 @@ export default function Home() {
                 ]},
                 { slides:[
                   { src:'/classe.jpg', label:'Salle de Classe',         sub:"Environnement d'apprentissage" },
-                  { src:'placeholder:1',label:'Salle de Classe',         sub:'Salle informatique' },
-                  { src:'placeholder:2',label:'Salle de Classe',         sub:'Bibliothèque' },
+                  { src:'/bureaux.jpg',label:'Salle de Classe',         sub:'Salle informatique' },
+                  
                 ]},
                 { slides:[
                   { src:'/groupe.png', label:'Élèves & Communauté',     sub:'Vie scolaire' },
                   { src:'/reboi.jpg',label:'Reboisement',     sub:'Sortie scolaire' },
                   { src:'/ensemble.jpg',label:'Élèves & Communauté',     sub:'Cérémonie' },
+                  { src:'/reboisement.jpg',label:'Élèves & Communauté',     sub:'Cérémonie' },
+                  { src:'/mamboly.jpg',label:'Élèves & Communauté',     sub:'Cérémonie' },
+                  { src:'/mamboly2.jpg',label:'Élèves & Communauté',     sub:'Cérémonie' },
+                  { src:'/hazo.jpg',label:'Élèves & Communauté',     sub:'Cérémonie' },
+                  { src:'/tsara_petraka.jpg',label:'Élèves & Communauté',     sub:'Cérémonie' },
                 ]},
                 { slides:[
                   { src:'/dessin.jpg', label:'Activités Artistiques',   sub:'Créativité & expression' },
@@ -379,9 +384,11 @@ export default function Home() {
                   { src:'placeholder:2',label:'Activités Artistiques',   sub:'Atelier peinture' },
                 ]},
                 { slides:[
-                  { src:'/ecole.png',  label:'Espaces Communs',         sub:'Lieux de partage' },
-                  { src:'placeholder:1',label:'Espaces Communs',         sub:'Cantine' },
-                  { src:'placeholder:2',label:'Espaces Communs',         sub:'Salle polyvalente' },
+                  { src:'/bitro.jpg',  label:'Espaces Communs',         sub:'Lieux de partage' },
+                  { src:'/mandraka.jpg',label:'Espaces Communs',         sub:'Excursion' },
+                  { src:'/groupe.jpg',label:'Espaces Communs',         sub:'Excursion' },
+                  { src:'/jeu.jpg',label:'Espaces Communs',         sub:'Excursion' },
+                  { src:'/ps.jpg',label:'Élèves & Communauté',     sub:'Cérémonie' },
                 ]},
               ].map((item, i) => (
                 <PhotoCarousel key={i} slides={item.slides} />
