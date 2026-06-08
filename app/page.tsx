@@ -371,7 +371,7 @@ export default function Home() {
                 { slides:[
                   { src:'/groupe.png', label:'Élèves & Communauté',     sub:'Vie scolaire' },
                   { src:'/reboi.jpg',label:'Élèves & Communauté',     sub:'Sortie scolaire' },
-                  { src:'placeholder:2',label:'Élèves & Communauté',     sub:'Cérémonie' },
+                  { src:'/ensemble.jpg',label:'Élèves & Communauté',     sub:'Cérémonie' },
                 ]},
                 { slides:[
                   { src:'/dessin.jpg', label:'Activités Artistiques',   sub:'Créativité & expression' },
